@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "900930188036",
+    "project_id": "futsalnepal-8f8ef",
+    "storage_bucket": "futsalnepal-8f8ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900930188036:android:2536734be587b88732d651",
+        "android_client_info": {
+          "package_name": "com.futsalnepal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900930188036-sk085jo1gcjnl618hn0j484ie6nlstvi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW-jzrPhlcYHRaTfpEOeq7HWI5lRz395g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900930188036-sk085jo1gcjnl618hn0j484ie6nlstvi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
