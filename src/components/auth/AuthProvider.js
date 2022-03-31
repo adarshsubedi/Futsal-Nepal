@@ -1,46 +1,65 @@
 import React, {useState, createContext, useContext, useEffect} from 'react';
-import {auth} from "@react-native-firebase/auth";
-// import { AppProvider } from 'react-providers';
+import auth from "@react-native-firebase/auth";
+import { NavigationContainer } from '@react-navigation/native';
+// import HomeScreen from '../HomeScreen';
+// import RegisterScreen from '../RegisterScreen';
+import {View, Text, TextInput, Alert, FormButton, Button, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid } from 'react-native';
 
-// import AuthProvider from './auth/index.js';
 
-//import { createContext } from "react/cjs/react.production.min";
+const signUp = (fullName, email, password) => {
+    console.log('values:', fullName, email, password);
+    if(!fullName || !email || !password){
+        Alert.alert('Empty fields');
+    }
 
-export const AuthContext = createContext();
+    return auth().createUserWithEmailAndPassword(email, password)
+    .then( cred => {
+        const {uid} = cred.user;
+        auth().currentUser.updateProfile({
+            displayName: fullName
 
-export const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null);
-    return(
-        <AuthContext.Provider
-            value={{
-                user,
-                setUser,
-                login: async (email, password) => {
-                    try{
-                        await auth().signInWithEmailAndPassword(email, password)
-                    } catch(e) {
-                        console.log(e);
-                    }
-                },
-                register: async(email, password) => {
-                    // console.log(user);
-                    try{
-                        await auth().createUserWithEmailAndPassword(email, password);
-                    } catch(e) {
-                        console.log(user);
-                    }
-                },
-                logout: async () => {
-                    try {
-                        await auth().signOut();
-                    } catch (e) {
-                        console.log(e);
-                    }
-                },
-            }}>
-                {children}
-        </AuthContext.Provider>
+        });
+
+        return uid;
+    })
+    .catch(
+        err => {
+            console.log("Error: ", err)
+            Alert.alert(err.code, err.message)}
+    );
+};
+
+const signIn = (email, password) => {
+    if(!email || !password){
+       Alert.alert('Empty fields') 
+    }
+
+    return auth().signInWithEmailAndPassword(email, password)
+    .then(() => {})
+    .catch(
+        err => Alert.alert(err.code, err.message)
     )
 }
 
-// export default createContext;
+const forgetPassword = (email) => {
+    if(!email){
+        Alert.alert('Please enter email')
+    }
+
+    return auth().sendPasswordResetEmail(email);
+}
+
+const signOut = () => {
+    return auth().signOut()
+
+}
+
+const Auth = {
+    signUp,
+    signIn,
+    forgetPassword,
+    signOut
+
+}
+
+export default Auth;

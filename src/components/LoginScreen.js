@@ -1,12 +1,17 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useState} from 'react';
-import {View, Text, TextInput, Image, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid} from 'react-native';
-
+import {View, Text, TextInput, TextButton, Image, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid} from 'react-native';
+import Auth from './auth/AuthProvider';
+import auth from './auth/AuthProvider';
 
 const LoginScreen = (props) => {
   
     const {navigation} = props
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return(
         <KeyboardAvoidingView
             behavior={Platform.OS === 'android' ? 'padding' : 'height'}>
@@ -15,20 +20,50 @@ const LoginScreen = (props) => {
             <View style={styles.container}>
                  
             
-            <TextInput style={styles.input} placeholder={'Email'} placeholderTextColor='black' />
+            <TextInput 
+            style={styles.input} 
+            value={email}
             
-            <TextInput secureTextEntry={true} style={styles.input} placeholder={'Password'} placeholderTextColor='black'/> 
+            onChangeText={e => setEmail(e)}
+            placeholder={'Email'} 
+            placeholderTextColor='black'
+            />
+            
+            <TextInput 
+            secureTextEntry={true}
+            onChangeText={e => setPassword(e)}
+            value={password} 
+
+            style={styles.input} 
+            placeholder={'Password'} 
+            placeholderTextColor='black'
+            /> 
+
+            {/* <TextButton
+            text='Forget Password'
+            style={styles.forget}
+            onPress={() => navigation.navigate('Forget Password?')}
+            /> */}
                 
                 <View style={styles.views}>
-                    <TouchableOpacity onPress= {() => navigation.navigate('Welcome')}  style={styles.button}>
-                        <Text style={{textAlign: 'center', color: 'white', fontSize: 25,  fontFamily: 'monospace',}}>Login</Text>
+                    <TouchableOpacity onPress= {() => Auth.signIn(email, password)}  
+                    style={styles.button}>
+                        <Text style={{textAlign: 'center', 
+                        color: 'white', 
+                        fontSize: 25,  
+                        fontFamily: 'monospace',}}>Login</Text>
                     </TouchableOpacity>
 
                 
                     <Text style={styles.text}>Don't have an account? </Text>
 
-                    <TouchableOpacity onPress= {() => navigation.navigate('Register')}  style={styles.button}>
-                        <Text style={{textAlign: 'center', color: 'white', fontSize: 25,  fontFamily: 'monospace',}}>Register</Text>
+                    <TouchableOpacity 
+                    onPress= {() => navigation.navigate('Register')}  
+                    style={styles.button}>
+                        <Text style={{textAlign: 'center', 
+                        color: 'white', 
+                        fontSize: 25,  
+                        fontFamily: 'monospace',}}>Register</Text>
                     </TouchableOpacity>
 
                     <Text style={styles.text}>or sign in with </Text>
@@ -40,10 +75,15 @@ const LoginScreen = (props) => {
                             style = {{ width: 940, height: 367 }}/>;
                         </Text>
                     </View> */}
-
+                    
+                    
+                    {/* admin login  */}
                     <Text style={styles.admin}>Sign in as </Text>
                     <TouchableOpacity onPress= {() => navigation.navigate('Admin')}  style={styles.button}>
-                        <Text style={{textAlign: 'center', color: 'white', fontSize: 25,  fontFamily: 'monospace',}}>Admin</Text>
+                        <Text style={{textAlign: 'center', 
+                        color: 'white', 
+                        fontSize: 25,  
+                        fontFamily: 'monospace',}}>Admin</Text>
                     </TouchableOpacity>
                     
                 
@@ -98,10 +138,13 @@ const styles = StyleSheet.create({
     },
     admin:{
         fontSize: 20,
-        marginTop: 360,
+        marginTop: 330,
         color: '#000',
         fontFamily: 'monospace',
     },
+    forget:{
+        color: 'black',
+    }
 })
 
 export default LoginScreen;

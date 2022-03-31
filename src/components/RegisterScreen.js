@@ -3,40 +3,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useState, useContext, createContext, useEffect} from 'react';
 import {View, Text, TextInput, FormButton, Button, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid } from 'react-native';
 // import { useContext } from 'react/cjs/react.production.min';
-import { AuthContext } from './auth/AuthProvider';
-import HomeScreen from './HomeScreen';
+import { authContext } from './auth/AuthProvider';
+// import HomeScreen from './HomeScreen';
+import auth from "@react-native-firebase/auth";
+import Auth from './auth/AuthProvider';
 
 
 
 
 const RegisterScreen = (navigation) => {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [confirmPassword, setConfirmPassword] = useState();
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    // const [confirmPassword, setConfirmPassword] = useState('');
 
     
-    // const [register] = useContext(AuthContext);
-
-    const [name, setName] = useState ('');
-    const [submitted, setSubmitted] = useState ('');
-    // const {navigation} = props
-    const window = useWindowDimensions();
-
-    // const onPressHandler = () => {
-        
-    //     if (name.length >2) {
-    //         setSubmitted(!submitted);
-    //         } else {
-    //       ToastAndroid.showWithGravity('Empty fields',
-    //       ToastAndroid.LONG,
-    //       ToastAndroid.BOTTOM,
-    //       );
-
-        
-    //     };
-        
-    // };
-
+  
     
     return(
         
@@ -54,22 +36,45 @@ const RegisterScreen = (navigation) => {
                 
                     {/* <TextInput style={styles.input} placeholder={'Name'} placeholderTextColor='black'/> */}
                     
-                    <TextInput style={styles.input} placeholder={'Email'} placeholderTextColor='black'/>
+                    <TextInput 
+                    style={styles.input} 
+                    value={fullName}
+                    placeholder={'Name'} 
+                    placeholderTextColor='black'
+                    onChangeText={e => setFullName(e)}
+                    />
+
+                    <TextInput 
+                    style={styles.input} 
+                    value={email}
+                    placeholder={'Email'} 
+                    placeholderTextColor='black'
+                    onChangeText={e => setEmail(e)}
+                    />
                     
-                    <TextInput style={styles.input} placeholder={'Password'} placeholderTextColor='black'/>
+                    <TextInput 
+                    style={styles.input} 
+                    value={password}
+                    placeholder={'Password'}
+                    placeholderTextColor='black'
+                    secureTextEntry={true}
+                    onChangeText={e => setPassword(e)}
+                    />
                     
-                    <TextInput style={styles.input} placeholder={'Confirm Password'} placeholderTextColor='black'/>
+                    {/* <TextInput style={styles.input} placeholder={'Confirm Password'} placeholderTextColor='black'/> */}
 
                     {/* <TextInput style={styles.input} placeholder={'Pick a Date'} placeholderTextColor='black'/> */}
 
                     
 
                 <View style={styles.views}>
-                {() => register(email, password)}
+                {/* {() => register(email, password)} */}
                 {/* {() => navigation.navigate('Home')} */}
                 
 
-                    <TouchableOpacity onPress= {() => register(email, password)}   style={styles.button}>
+                    <TouchableOpacity 
+                    onPress={ () => Auth.signUp(fullName, email, password)} 
+                    style={styles.button}>
                         <Text style={{textAlign: 'center', color: 'white', fontSize: 25,  fontFamily: 'monospace',}}>Register</Text>
                     </TouchableOpacity>
 
@@ -78,8 +83,8 @@ const RegisterScreen = (navigation) => {
                 </View>
             </View>
         </View>
-        </ScrollView>
-        </TouchableWithoutFeedback>
+                </ScrollView>
+            </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     );
 };
