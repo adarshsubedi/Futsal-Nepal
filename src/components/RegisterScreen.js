@@ -2,14 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useState, useContext, createContext, useEffect} from 'react';
 import {View, Text, TextInput, FormButton, Button, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid } from 'react-native';
-// import { useContext } from 'react/cjs/react.production.min';
 import { authContext } from './auth/AuthProvider';
-// import HomeScreen from './HomeScreen';
 import auth from "@react-native-firebase/auth";
 import Auth from './auth/AuthProvider';
-
-
-
 
 const RegisterScreen = (navigation) => {
     const [fullName, setFullName] = useState('');
@@ -17,72 +12,57 @@ const RegisterScreen = (navigation) => {
     const [password, setPassword] = useState('');
     // const [confirmPassword, setConfirmPassword] = useState('');
 
-    
-  
-    
     return(
-        
-        
         <KeyboardAvoidingView
             behavior={Platform.OS === 'android' ? 'padding' : 'height'}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView>
-            <View style={styles.container}>
-               
-                <Text style={styles.text}>
-                    Create new account
-                </Text>
-                    <View>
-                
-                    {/* <TextInput style={styles.input} placeholder={'Name'} placeholderTextColor='black'/> */}
+                <ScrollView>
+                            <View style={styles.container}>
                     
-                    <TextInput 
-                    style={styles.input} 
-                    value={fullName}
-                    placeholder={'Name'} 
-                    placeholderTextColor='black'
-                    onChangeText={e => setFullName(e)}
-                    />
+                                <Text style={styles.text}>
+                                    Create new account
+                                </Text>
 
-                    <TextInput 
-                    style={styles.input} 
-                    value={email}
-                    placeholder={'Email'} 
-                    placeholderTextColor='black'
-                    onChangeText={e => setEmail(e)}
-                    />
-                    
-                    <TextInput 
-                    style={styles.input} 
-                    value={password}
-                    placeholder={'Password'}
-                    placeholderTextColor='black'
-                    secureTextEntry={true}
-                    onChangeText={e => setPassword(e)}
-                    />
-                    
-                    {/* <TextInput style={styles.input} placeholder={'Confirm Password'} placeholderTextColor='black'/> */}
+                            <View>
+                                <TextInput 
+                                style={styles.input} 
+                                value={fullName}
+                                placeholder={'Name'} 
+                                placeholderTextColor='black'
+                                onChangeText={e => setFullName(e)}
+                                />
 
-                    {/* <TextInput style={styles.input} placeholder={'Pick a Date'} placeholderTextColor='black'/> */}
+                                <TextInput 
+                                style={styles.input} 
+                                value={email}
+                                placeholder={'Email'} 
+                                placeholderTextColor='black'
+                                onChangeText={e => setEmail(e)}
+                                />
+                                
+                                <TextInput 
+                                style={styles.input} 
+                                value={password}
+                                placeholder={'Password'}
+                                placeholderTextColor='black'
+                                secureTextEntry={true}
+                                onChangeText={e => setPassword(e)}
+                                />
+                                
+                                {/* <TextInput style={styles.input} placeholder={'Confirm Password'} placeholderTextColor='black'/> */}
 
-                    
+                                {/* <TextInput style={styles.input} placeholder={'Pick a Date'} placeholderTextColor='black'/> */}
 
-                <View style={styles.views}>
-                {/* {() => register(email, password)} */}
-                {/* {() => navigation.navigate('Home')} */}
-                
-
-                    <TouchableOpacity 
-                    onPress={ () => Auth.signUp(fullName, email, password)} 
-                    style={styles.button}>
-                        <Text style={{textAlign: 'center', color: 'white', fontSize: 25,  fontFamily: 'monospace',}}>Register</Text>
-                    </TouchableOpacity>
-
-                   
-
-                </View>
-            </View>
-        </View>
+                            <View style={styles.views}>
+                                <TouchableOpacity 
+                                    onPress={ () => Auth.signUp(fullName, email, password)} 
+                                    style={styles.button}>
+                                    <Text style={{textAlign: 'center', color: 'white', fontSize: 25,  fontFamily: 'monospace',}}>Register</Text>
+                                    {/* <Text>Alert.alert('Register Successfully')</Text> */}
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
                 </ScrollView>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
