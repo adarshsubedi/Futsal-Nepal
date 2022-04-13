@@ -146,6 +146,7 @@ const LoginScreen = (props) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
+        flex: 2,
 
     },
     header: {

@@ -139,3 +139,82 @@
 // })
 
 // export default OnBoard;
+
+
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useRef } from 'react';
+import ViewPager from '@react-native-community/viewpager';
+import Page from './Page';
+import Button from '../Button/Button';
+import Footer from './Footer';
+import { NavigationContainer } from '@react-navigation/native';
+
+const OnBoard = (props) => {
+    const { navigation } = props
+    const pagerRef = useRef(null);
+
+    const handlePageChange = pageNumber => {
+        pagerRef.current.setPage(pageNumber);
+    };
+
+    return (
+        <View style={{ flex: 1 }}>
+            <ViewPager style={{ flex: 1 }} initialPage={0} ref={pagerRef}>
+                <View key='1'>
+                    <Page
+                        Image source={require('../images/board1.jpg')}
+                        backgroundColor='#06001c'
+                        title='Best Digital Solution'
+                        subtitle= 'It is just a simple text for testing screen nothing else you can relax and chill.'
+                        
+                    />
+                    <Footer
+                    backgroundColor= '#06001c'
+                    rightButtonLabel= 'NEXT'
+                    leftButtonLabel= 'SKIP'
+                    leftButtonPress={() => navigation.navigate('Login')}
+                    rightButtonPress={() => {
+                        handlePageChange(1);
+                    }}
+                    />
+                </View>
+                <View key='2'>
+                    <Page
+                    Image source={require('../images/futsal1.jpg')}
+                        backgroundColor='#06001c'
+                        title='Achieve Your Goal'
+                        subtitle= 'It is just a simple text for testing screen nothing else you can relax and chill.'
+                    />
+                     <Footer
+                    backgroundColor= '#06001c'
+                    rightButtonLabel= 'NEXT'
+                    leftButtonLabel= 'SKIP'
+                    leftButtonPress={() => navigation.navigate('Login')}
+                    rightButtonPress={() => {
+                        handlePageChange(2);
+                    }}
+                    />
+                </View>
+                <View key='3'>
+                    <Page
+                        backgroundColor='#06001c'
+                        title='Increases Your Value'
+                        subtitle= 'It is just a simple text for testing screen nothing else you can relax and chill.'
+                    />
+                     <Footer
+                    backgroundColor= '#06001c'
+                    rightButtonLabel= 'GET STARTED'
+                    rightButtonPress={() => navigation.navigate('Login')}
+
+                    />
+
+                </View>
+            </ViewPager>
+        </View>
+    );
+};
+
+
+const styles = StyleSheet.create({})
+
+export default OnBoard;
