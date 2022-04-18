@@ -30,6 +30,7 @@ import FirstScreen from './src/components/FirstScreen';
 import Hello from './src/components/Hello';
 
 import OnBoard from './src/components/OnBoard/OnBoard';
+import StarterBoard from './src/components/StarterBoard/index';
 // import OnBoard2 from './src/components/OnBoard/OnBoard2';
 // import OnBoard3 from './src/components/OnBoard/OnBoard3';
 
@@ -65,7 +66,8 @@ const App = ({ navigation }) => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='OnBoard'>
+      <Stack.Navigator initialRouteName='StarterBoard'>
+        <Stack.Screen name='StarterBoard' component={StarterBoard} options={{ headerShown: false }} />
         <Stack.Screen name='OnBoard' component={OnBoard} options={{ headerShown: false }} />
         {/* <Stack.Screen name='OnBoard2' component={OnBoard2} options={{ headerShown: false }} />
         <Stack.Screen name='OnBoard3' component={OnBoard3} options={{ headerShown: false }} /> */}
