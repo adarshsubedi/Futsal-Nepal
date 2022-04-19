@@ -1,10 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useState, useContext, createContext, useEffect} from 'react';
-import {View, Text, TextInput, FormButton, Button, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid } from 'react-native';
+import {View, Text, TextInput, Image, FormButton, Button, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid } from 'react-native';
 import { authContext } from './auth/AuthProvider';
 import auth from "@react-native-firebase/auth";
 import Auth from './auth/AuthProvider';
+
+import { Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const RegisterScreen = (navigation) => {
     const [fullName, setFullName] = useState('');
@@ -20,15 +25,18 @@ const RegisterScreen = (navigation) => {
                             <View style={styles.container}>
                     
                                 <Text style={styles.text}>
-                                    Create new account
+                                    Create Account
                                 </Text>
+
+                                <Image source={require('./images/ball.png')}
+                                style={{ width: 150, height: 150,  borderRadius: 500, alignSelf: 'center' }} />
 
                             <View>
                                 <TextInput 
                                 style={styles.input} 
                                 value={fullName}
                                 placeholder={'Name'} 
-                                placeholderTextColor='black'
+                                placeholderTextColor='white'
                                 onChangeText={e => setFullName(e)}
                                 />
 
@@ -36,7 +44,7 @@ const RegisterScreen = (navigation) => {
                                 style={styles.input} 
                                 value={email}
                                 placeholder={'Email'} 
-                                placeholderTextColor='black'
+                                placeholderTextColor='white'
                                 onChangeText={e => setEmail(e)}
                                 />
                                 
@@ -44,7 +52,7 @@ const RegisterScreen = (navigation) => {
                                 style={styles.input} 
                                 value={password}
                                 placeholder={'Password'}
-                                placeholderTextColor='black'
+                                placeholderTextColor='white'
                                 secureTextEntry={true}
                                 onChangeText={e => setPassword(e)}
                                 />
@@ -57,7 +65,7 @@ const RegisterScreen = (navigation) => {
                                 <TouchableOpacity 
                                     onPress={ () => Auth.signUp(fullName, email, password)} 
                                     style={styles.button}>
-                                    <Text style={{textAlign: 'center', color: 'white', fontSize: 25,  fontFamily: 'monospace',}}>Register</Text>
+                                    <Text style={{textAlign: 'center', color: 'black', fontSize: 25,  fontFamily: 'monospace',}}>Register</Text>
                                     {/* <Text>Alert.alert('Register Successfully')</Text> */}
                                 </TouchableOpacity>
                             </View>
@@ -71,47 +79,43 @@ const RegisterScreen = (navigation) => {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        marginTop:5,
-        backgroundColor: 'white',
+        //justifyContent: 'center',
+        height: windowHeight,
+        width: windowWidth,
+        backgroundColor: '#06001c',
         
         
     },
     text: {
         textAlign: 'center',
         fontSize: 30,
-        color: 'blue',
         marginBottom: 15,
-        color: 'black',
+        color: 'white',
+        fontFamily: 'monospace',
 
     },
     texts: {
-        marginLeft: 10,
-        fontSize: 15,
+        // marginLeft: 10,
+        // fontSize: 15,
 
     },
     views: {
-        alert: 'Success',
         alignItems: 'center',
     },
     input: {
-        // borderRadius: 25,
         borderColor: 'black',
-        backgroundColor: 'white',
-        color:'black',
-        marginLeft: 10,
-        marginRight: 10,
-        // marginTop: 5,
-        // marginBottom: 10,
-        paddingLeft: 15,
-        borderBottomColor: '#000', 
-        borderBottomWidth: 2
+        fontFamily: 'monospace',
+        paddingHorizontal: 15,
+        borderBottomColor: 'white', 
+        borderBottomWidth: 2,
+        marginBottom: 8,
+        marginHorizontal: 15,
         
     },
     button: {
         marginTop: 15,
-        width: '50%',
-        backgroundColor: 'darkgreen',
+        width: '92%',
+        backgroundColor: 'white',
         height: 50,
         fontSize: 30,
         justifyContent: 'center',

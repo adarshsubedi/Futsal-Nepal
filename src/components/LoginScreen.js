@@ -1,13 +1,21 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text, TextInput, TextButton, Image, Button, StyleSheet, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid } from 'react-native';
 import Auth from './auth/AuthProvider';
 import auth from './auth/AuthProvider';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 
 const LoginScreen = (props) => {
+
+    const ref_to_input2 = useRef();
+  
 
     const { navigation } = props
 
@@ -15,18 +23,29 @@ const LoginScreen = (props) => {
     const [password, setPassword] = useState('');
 
     return (
-        <ScrollView>
+        
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'android' ? 'padding' : 'height'}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
                     <View style={styles.container}>
-                        <View styles={styles.header}>
-
+                        <View style={styles.header}>
+                            <Text style={styles.fan}>
+                                F
+                            </Text>
+                            <Text style={styles.normal}>
+                                UTSAL
+                            </Text>
+                            <Text style={styles.fan}>
+                                N
+                            </Text>
+                            <Text style={styles.normal}>
+                                EPAL
+                            </Text>
                         </View>
                         <View style={styles.img}>
                             <Image source={require('./images/futsal2.jpg')}
-                                style={{ width: 360, height: 210, resizeMode: 'cover' }} />
+                                style={{ width: 250, height: 250, resizeMode: 'cover', borderRadius: 200, alignSelf: 'center' }} />
                         </View>
 
                         {/* <View style={styles.firsticon}>
@@ -38,7 +57,8 @@ const LoginScreen = (props) => {
                             value={email}
                             onChangeText={e => setEmail(e)}
                             placeholder={'Email'}
-                            placeholderTextColor='black'
+                            placeholderTextColor='white'
+                            color= 'white'
                         />
 
                         {/* <Icon name='key' size={25} style={styles.icons}></Icon> */}
@@ -48,16 +68,19 @@ const LoginScreen = (props) => {
                             value={password}
                             style={styles.input}
                             placeholder={'Password'}
-                            placeholderTextColor='black'
+                            placeholderTextColor='white'
+                            color= 'white'
+                        
                         />
 
 
                         <TouchableOpacity onPress={() => navigation.navigate('Forget')} >
                             <Text style={{
-                                textAlign: 'center',
-                                color: 'black',
-                                fontSize: 20,
-                                color: 'darkgreen',
+                                //textAlign: 'center',
+                                // color: 'black',
+                                marginBottom: 15,
+                                fontSize: 18,
+                                color: 'white',
                                 marginTop: 5,
                                 textAlign: 'right',
                                 marginRight: 10,
@@ -70,25 +93,25 @@ const LoginScreen = (props) => {
                                 style={styles.button}>
                                 <Text style={{
                                     textAlign: 'center',
-                                    color: 'white',
+                                    color: 'black',
                                     fontSize: 25,
                                     fontFamily: 'monospace',
                                 }}>Login</Text>
                             </TouchableOpacity>
 
-                            <Text style={styles.text}>or sign in with </Text>
+                            {/* <Text style={styles.text}>or sign in with </Text>
 
                             <View>
                                 <View style={styles.socialiconfa}>
                                     <Icon.Button
                                         name='facebook'
                                         backgroundColor="#3b5998"> Facebook
-                                        {/* onPress={() => onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'))} */}
+                                        onPress={() => onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'))}
 
                                     </Icon.Button>
                                     <Icon.Button name='google' backgroundColor='grey'> Google </Icon.Button>
                                 </View>
-                            </View>
+                            </View> */}
 
 
 
@@ -97,78 +120,64 @@ const LoginScreen = (props) => {
                                 onPress={() => navigation.navigate('Register')}>
                                 <Text style={{
                                     textAlign: 'center',
-                                    color: 'black',
-                                    fontSize: 20,
-                                    color: 'darkgreen',
-                                    // borderBottomColor: 'darkgreen', 
-                                    // borderBottomWidth: 2,
+                                    fontSize: 18,
+                                    color: 'white',
                                     marginTop: 5,
                                     fontFamily: 'monospace',
-                                    marginBottom: 10,
-                                    marginTop: 10,
+                                    marginTop: 70,
                                 }}>Don't have an account? Register</Text>
                             </TouchableOpacity>
-
-                            {/* <TouchableOpacity
-                                onPress={() => navigation.navigate('Hi')}>
-                                <Text style={{
-                                    textAlign: 'center',
-                                    color: 'black',
-                                    fontSize: 20,
-                                    color: 'darkgreen',
-                                    // borderBottomColor: 'darkgreen', 
-                                    // borderBottomWidth: 2,
-                                    marginTop: 5,
-                                    fontFamily: 'monospace',
-                                    marginBottom: 10,
-                                    marginTop: 10,
-                                }}>Touch to see hello</Text>
-                            </TouchableOpacity> */}
-
-
 
 
                             {/* admin login  */}
 
-                            <TouchableOpacity onPress={() => navigation.navigate('Admin')}  >
-                                <Text style={{ fontSize: 20, color: 'darkgreen', fontFamily: 'monospace', marginTop: 0 }}>Sign in as Admin</Text>
-                            </TouchableOpacity>
+                            {/* <TouchableOpacity onPress={() => navigation.navigate('Admin')}  >
+                                <Text style={{ fontSize: 20, color: 'white', fontFamily: 'monospace', marginTop: 0 }}>Sign in as Admin</Text>
+                            </TouchableOpacity> */}
 
 
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
-        </ScrollView>
+        
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
-        flex: 2,
+        backgroundColor: '#06001c',
+        height: windowHeight,
+        // flex: 1,
 
     },
     header: {
         flexDirection: 'row',
-        backgroundColor: 'darkgreen',
-        height: 20,
+        paddingTop: 5,
+        marginBottom: 30,
+        color: 'white',
+        fontFamily: 'monospace',
+        justifyContent: 'center',
+        margin: 15,
+
     },
     text: {
         marginTop: 10,
         textAlign: 'center',
         width: '100%',
-        color: 'black',
+        color: 'white',
         fontSize: 20,
         fontFamily: 'monospace',
     },
     views: {
         alignItems: 'center',
+
     },
     button: {
         marginTop: 15,
-        width: '50%',
-        backgroundColor: 'darkgreen',
+        width: '90%',
+        backgroundColor: 'white',
+
         height: 50,
         fontSize: 30,
         justifyContent: 'center',
@@ -182,9 +191,10 @@ const styles = StyleSheet.create({
         // marginTop: 10,
         marginHorizontal: 20,
         paddingLeft: 15,
-        color: 'black',
+        marginTop: 5,
+        paddingBottom: 15,
         // Add this to specify bottom border color
-        borderBottomColor: '#000',
+        borderBottomColor: 'white',
         borderBottomWidth: 2
     },
 
@@ -207,6 +217,18 @@ const styles = StyleSheet.create({
     socialicongo: {
         // marginLeft: 5,
         width: '40%',
+    },
+    fan:{
+        fontSize: 55,
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    normal:{
+        fontSize: 30,
+        color: 'white',
+        marginTop: 22,
+        fontFamily: 'monospace',
     },
 })
 

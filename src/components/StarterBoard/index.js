@@ -23,7 +23,7 @@ const StarterBoard = () => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ backgroundColor: '#06001c', height: 1000 }}>
+            <View style={{ backgroundColor: '#06001c', height: 900 }}>
                 <RenderElement />
 
                 <View style={styles.button}>

@@ -1,38 +1,39 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
-const ThirdScreen = (props) => {
+const ThirdScreen = () => {
 
-  const { navigation } = props
+  const navigation = useNavigation();
 
   return (
     <ScrollView>
-    <View style={styles.container}>
-      <View style={styles.img}>
-        <Image source={require('../images/board3.jpg')}
-          style={{ width: 355, height: 430 }} />
-      </View>
+      <View style={styles.container}>
+        <View style={styles.img}>
+          <Image source={require('../images/board3.jpg')}
+            style={{ width: 355, height: 430 }} />
+        </View>
 
-      <Text style={styles.header}>
-        Increases Your Value
-      </Text>
+        <Text style={styles.header}>
+          Increases Your Value
+        </Text>
 
-      <Text style={styles.subheader}>
-        It is just a simple text for testing screen nothing else you can relax and chill.
-      </Text>
+        <Text style={styles.subheader}>
+          It is just a simple text for testing screen nothing else you can relax and chill.
+        </Text>
 
 
 
-      <TouchableOpacity style={styles.getStarted}
-        // onPress={() => navigation.navigate('Login')}
+        <TouchableOpacity style={styles.getStarted}
+         onPress={() => navigation.navigate('Login')}
         >
-        <Text style={styles.get}>GET STARTED</Text>
-      </TouchableOpacity>
-    </View>
+          <Text style={styles.get}>GET STARTED</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };
@@ -57,8 +58,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Haas Grot Text R Web',
     paddingTop: 30,
     paddingHorizontal: 20,
-    paddingBottom: 95,
-    // paddingBottom: 980,
+    paddingBottom: 90,
   },
   getStarted: {
     color: 'white',
