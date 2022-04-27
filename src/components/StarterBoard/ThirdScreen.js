@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginScreen from '../LoginScreen';
 
 
 const ThirdScreen = () => {
@@ -14,8 +12,8 @@ const ThirdScreen = () => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.img}>
-          <Image source={require('../images/board3.jpg')}
-            style={{ width: 355, height: 430 }} />
+          {/* <Image source={require('../images/board3.jpg')}
+            style={{ width: 355, height: 430 }} /> */}
         </View>
 
         <Text style={styles.header}>
@@ -29,8 +27,7 @@ const ThirdScreen = () => {
 
 
         <TouchableOpacity style={styles.getStarted}
-         onPress={() => navigation.navigate('Login')}
-        >
+         onPress={() => navigation.navigate('LoginScreen')}>
           <Text style={styles.get}>GET STARTED</Text>
         </TouchableOpacity>
       </View>
@@ -48,7 +45,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 25,
     fontFamily: 'Haas Grot Text R Web',
-    paddingTop: 50,
+    // paddingTop: 50,
     fontWeight: 'bold',
   },
   subheader: {
@@ -56,13 +53,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     fontFamily: 'Haas Grot Text R Web',
-    paddingTop: 30,
-    paddingHorizontal: 20,
-    paddingBottom: 90,
+    // paddingTop: 30,
+    // paddingHorizontal: 20,
+    // paddingBottom: 90,
   },
   getStarted: {
     color: 'white',
-    paddingBottom: 20,
+    // paddingBottom: 20,
   },
   get: {
     color: 'black',

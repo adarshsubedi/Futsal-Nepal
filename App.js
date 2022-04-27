@@ -34,6 +34,7 @@ import StarterBoard from './src/components/StarterBoard/index';
 // import OnBoard2 from './src/components/OnBoard/OnBoard2';
 // import OnBoard3 from './src/components/OnBoard/OnBoard3';
 
+
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
@@ -68,10 +69,10 @@ const App = ({ navigation }) => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='StarterBoard'>
         <Stack.Screen name='StarterBoard' component={StarterBoard} options={{ headerShown: false }} />
-        <Stack.Screen name='OnBoard' component={OnBoard} options={{ headerShown: false }} />
+        {/* <Stack.Screen name='OnBoard' component={OnBoard} options={{ headerShown: false }} /> */}
         {/* <Stack.Screen name='OnBoard2' component={OnBoard2} options={{ headerShown: false }} />
         <Stack.Screen name='OnBoard3' component={OnBoard3} options={{ headerShown: false }} /> */}
-        <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name='Register' component={RegisterScreen} />
         <Stack.Screen name='Admin' component={AdminLogin} options={{ headerShown: false }} />
         <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />

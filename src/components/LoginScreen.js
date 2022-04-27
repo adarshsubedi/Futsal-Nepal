@@ -1,5 +1,7 @@
+// kiki
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+//kiki mathiko
 import React, { useState, useRef } from 'react';
 import { View, Text, TextInput, TextButton, Image, Button, StyleSheet, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ToastAndroid } from 'react-native';
 import Auth from './auth/AuthProvider';
